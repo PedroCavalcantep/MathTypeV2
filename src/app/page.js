@@ -1,15 +1,15 @@
 import { ComponentExterno } from "./ComponentExterno";
 
-function ComponentLocal() {
-  return <p class="text-xl text-center">eu sou um component local</p>;
-}
-
 export default function MyApp() {
   return (
-    <div class>
-      <h1 class="text-8xl antialiased text-center">olá, mundo, a culpa sempre sera de caua</h1>
+    <div>
+      <h1 class="text-8xl antialiased text-center">olá, mundo, a culpa é de caua</h1>
       <ComponentLocal />
       <ComponentExterno />
     </div>
   );
+}
+
+function ComponentLocal() {
+  return <p class="text-xl text-center">eu sou um component local</p>;
 }
