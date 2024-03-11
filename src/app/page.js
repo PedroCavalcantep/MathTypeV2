@@ -7,7 +7,7 @@ function ComponentLocal() {
 export default function MyApp() {
   return (
     <div class>
-      <h1 class="text-8xl antialiased text-center">olá, mundo</h1>
+      <h1 class="text-8xl antialiased text-center">olá, mundo, a culpa sempre sera de caua</h1>
       <ComponentLocal />
       <ComponentExterno />
     </div>
