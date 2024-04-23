@@ -1,8 +1,8 @@
 const userModel = require("../models/userModels");
 
-const listUsers = async (req, res) => {
+const listAll = async (req, res) => {
   try {
-    const users = await userModel.listUsers();
+    const users = await userModel.listAll();
     return res.status(200).json({ users });
   } catch (err) {
     return res.status(500).json({ message: "Internal server error" });
@@ -45,9 +45,29 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const user = await findUser(id);
+        console.log(user);
+
+        if (user == ""){
+            return res.status(404).json({error: "usuario não encontrado"});
+        }
+        else{
+            const getUser = await userModel.getUser(id);
+            return res.status(200).json({getUser});
+        }
+    } catch (err) {
+        return res.status(404).json(error);
+    }
+}
+
 module.exports = {
-  listUsers,
+  listAll,
   createUser,
   deleteUser,
   findUser,
+  getUser,
 };

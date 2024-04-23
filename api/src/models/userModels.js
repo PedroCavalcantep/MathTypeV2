@@ -43,4 +43,5 @@ module.exports = {
     createUser,
     deleteUser,
     getUser,
+    findUser,
 };
