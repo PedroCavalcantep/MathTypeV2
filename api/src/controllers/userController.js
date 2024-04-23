@@ -64,10 +64,27 @@ const getUser = async (req, res) => {
     }
 }
 
+const loginUser = async (req, res) => {
+    try {
+
+        const user = await userModel.loginUser(req.body);
+        if (user == ""){
+            return res.status(404).json({message : "Usuario não encontrado"});
+        } 
+        else{
+        return res.status(200).json({message : "Logado com sucesso!"});
+        }   
+    } 
+    catch (err) {
+        return res.status(404).json(error);
+    }
+}
+
 module.exports = {
   listAll,
   createUser,
   deleteUser,
   findUser,
   getUser,
+  loginUser,
 };

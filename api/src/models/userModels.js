@@ -38,10 +38,23 @@ const getUser = async (id) => {
     return getUser.rows;
 }
 
+const loginUser = async (user) => {
+    const {
+        email, 
+        senha
+    } = user;
+
+    const query = "SELECT email, senha FROM users WHERE email = $1 AND senha = $2"
+    const loginUser = await pool.query(query, [email, senha]); 
+    return loginUser.rows;
+    
+}
+
 module.exports = {
     listAll,
     createUser,
     deleteUser,
     getUser,
     findUser,
+    loginUser,
 };
