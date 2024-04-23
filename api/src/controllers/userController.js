@@ -1,49 +1,53 @@
-const userModels = require("../models/userModels")
+const userModel = require("../models/userModels");
 
-const listAll = async (req, res) => {
-    try{
-        const user = await userModels.listAll();
-        return res.status(200).json({user}); 
-    }
-    catch(err) {res.status(400).json({err})};
+const listUsers = async (req, res) => {
+  try {
+    const users = await userModel.listUsers();
+    return res.status(200).json({ users });
+  } catch (err) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
 
-const createUser = async (req, res)  => {
-    try{
-        const user = await userModels.createUser(req.body);
-        return res.status(200).json({user});
-    }
-    catch(err) {
-        res.status(401).json({message: "usuario já existe"}); 
-        console.log(err);
-    };
+const createUser = async (req, res) => {
+  try {
+    const user = await userModel.createUser(req.body);
+    return res.status(201).json({ user });
+  } catch (err) {
+    return res.status(500).json({ error: "nome ou email ja utilizado" });
+  }
 }
+
+const findUser = async (x) => {
+  id = x;
+  try {
+    const user = await userModel.findUser(id);
+    return user;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const deleteUser = async (req, res) => {
-    try{
-        const user = await userModels.deleteUser(req.params.id);
-        return res.status(200).json("usuario deletado com sucesso");
-    }
-    catch(err) {
-        res.status(404).json({message: "usuario não existe"});
-        console.log(err);
-    }
-}
+  const id = req.params.id;
 
-const getUser = async (req, res) => {
-    try {
-        const user = await userModels.getUser(req.params.id);
-        if(!user){ return res.status(404).json({message: "usuario não encontrado"})};
-        return res.status(200).json({user});    
-    } 
-    catch (err) {
-        res.status(404).json({message: "usuario não encontrado"});
+  try {
+    const user = await findUser(id);
+    console.log(user);
+    if (user == "") {
+      return res.status(404).json({ error: "usuario não encontrado" });
+    } else {
+      const deletedUser = await userModel.deleteUser(id);
+      return res.status(200).json({ deletedUser });
     }
-}
+  } catch (error) {
+    return res.status(404).json(error);
+  }
+};
 
 module.exports = {
-    listAll,
-    createUser,
-    deleteUser,
-    getUser,
+  listUsers,
+  createUser,
+  deleteUser,
+  findUser,
 };

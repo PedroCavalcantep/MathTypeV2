@@ -18,11 +18,19 @@ const createUser = async (users) => {
     return createdUser.rows;
 }
 
-const deleteUser = async (id) => {
-    const query = "DELETE FROM users WHERE id = $1"
+  const findUser = async (id) => {
+    const query = "SELECT * FROM users WHERE id = $1";
+    const user = await pool.query(query, [id]);
+    return user.rows;
+  };
+  
+  const deleteUser = async (id) => {
+    const query = "DELETE FROM users WHERE id = $1 RETURNING *";
+  
     const deletedUser = await pool.query(query, [id]);
     return deletedUser.rows;
-}
+  };
+  
 
 const getUser = async (id) => {
     const query = "SELECT * FROM users WHERE id = $1"
