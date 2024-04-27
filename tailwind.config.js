@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        corheader: '#2E343D'
+        corheader: '#2E343D',
+        backgroundColor: '#212529'
       }
     },
   },
