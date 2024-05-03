@@ -1,11 +1,11 @@
-require("dotenv").config();
+require("dotenv").config()
 
-const pg = require("pg");
+const pg = require("pg")
 
-const {Pool} = pg;
+const { Pool } = pg
 
 const pool = new Pool({
-    connectionString: process.env.POSTGRES_URL
-});
+	connectionString: process.env.POSTGRES_URL,
+})
 
-module.exports = pool;
+module.exports = pool

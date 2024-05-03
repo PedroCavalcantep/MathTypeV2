@@ -5,17 +5,17 @@ const router = express.Router();
 const userController = require("./src/controllers/userController");
 const scoreController = require("./src/controllers/scoreController");
 
-// rotas user 
+// rotas user
 
 router.get("/user", userController.listAll);
 
 router.post("/user", userController.createUser);
 
-router.delete("/deleteUser/:id", userController.deleteUser);
+router.delete("/user/:id", userController.deleteUser);
 
 router.get("/user/:id", userController.getUser);
 
-router.post("/userLogin", userController.loginUser);
+router.post("/login", userController.loginUser);
 
 // rotas score
 
@@ -25,6 +25,6 @@ router.get("/topScore", scoreController.topScore);
 
 router.post("/score", scoreController.createScore);
 
-router.delete("/deleteScore/:id", scoreController.deleteScore);
+router.delete("/score/:id", scoreController.deleteScore);
 
 module.exports = router;
