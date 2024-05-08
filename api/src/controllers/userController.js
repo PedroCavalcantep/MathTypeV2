@@ -1,4 +1,6 @@
 const userModel = require("../models/userModels")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 const listAll = async (req, res) => {
 	try {
@@ -58,7 +60,7 @@ const getUser = async (req, res) => {
 			const getUser = await userModel.getUser(id)
 			return res.status(200).json({ getUser })
 		}
-	} catch (err) {
+	} catch (error) {
 		return res.status(404).json(error)
 	}
 }
@@ -69,11 +71,35 @@ const loginUser = async (req, res) => {
 		if (user == "") {
 			return res.status(404).json({ message: "Usuario não encontrado" })
 		} else {
-			return res.status(200).json({ message: "Logado com sucesso!" })
+			const token = jwt.sign({ user }, process.env.SECRET)
+
+			res.cookie("jwt", token, {
+				httpOnly: true,
+				maxAge: 15 * 24 * 60 * 60 * 1000,
+			})
+			res.status(201).json({
+				message: "Login realizado com sucesso",
+			})
 		}
 	} catch (err) {
-		return res.status(404).json(error)
+		return res.status(404).json(err)
 	}
+}
+const authCookie = async (req, res) => {
+	try {
+		const cookie = req.cookies["jwt"]
+		const claims = jwt.verify(cookie, process.env.SECRET)
+		if (!claims) {
+			return res.status(401).json({ message: "não autenticado" })
+		}
+		return res.send(claims)
+	} catch (error) {
+		return res.status(401).json({ message: "não autenticado" })
+	}
+}
+const logout = async (req, res) => {
+	res.cookie("jwt", "", { maxAge: 0 })
+	return res.status(200).json({ message: "deslogado com sucesso" })
 }
 
 module.exports = {
@@ -83,4 +109,6 @@ module.exports = {
 	findUser,
 	getUser,
 	loginUser,
+	authCookie,
+	logout,
 }
