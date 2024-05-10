@@ -12,7 +12,7 @@ export default function MainPage() {
      
 
       <button className=" bg-transparent border-2 border-blue-400 hover:bg-blue-400 text-blue-400 font-bold hover:text-white py-4 px-12  transition duration-300 ease-in-out rounded">
-        <span>Lets play</span>
+        <span>Let's play</span>
       </button>
     </section>
   )
