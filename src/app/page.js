@@ -2,6 +2,7 @@ import Image from "next/image";
 import MainPage from "./components/MainPage";
 import CardGame from "./components/CardGame";
 import Navbar from "./components/header";
+import Login from "./components/Login";
 
 export default function Home() {
   return (    
@@ -17,6 +18,7 @@ export default function Home() {
       <CardGame></CardGame>
     </div>
 
+    <Login></Login>
     </div>
   );
 }
