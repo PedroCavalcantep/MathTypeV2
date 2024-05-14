@@ -1,9 +1,16 @@
 const express = require("express")
-
 const router = express.Router()
+const multer = require('multer')
 
 const userController = require("./src/controllers/userController")
 const scoreController = require("./src/controllers/scoreController")
+const imageController = require("./src/controllers/imageController")
+
+//multer config
+const storage = multer.memoryStorage()
+const upload = multer({storage})
+
+
 
 // rotas user
 
@@ -31,4 +38,11 @@ router.post("/score", scoreController.createScore)
 
 router.delete("/score/:id", scoreController.deleteScore)
 
+//rotas imagens
+
+router.post("/upload", upload.single("file"), imageController.uploadImage)
+router.get("/image/:id", imageController.getImage)
+
 module.exports = router
+
+

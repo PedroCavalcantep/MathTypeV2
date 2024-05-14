@@ -8,7 +8,7 @@ const listAll = async () => {
 
 const createUser = async (users) => {
 	const { nome, email, senha } = users
-	const query = 'INSERT INTO users (nome, email, senha) VALUES ($1, $2, $3) RETURNING *'
+	const query = 'INSERT INTO users (nome, email, senha, id_foto) VALUES ($1, $2, $3, 1 ) RETURNING *'
 	const createdUser = await pool.query(query, [nome, email, senha])
 	return createdUser.rows
 }
