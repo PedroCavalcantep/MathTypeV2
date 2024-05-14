@@ -7,7 +7,7 @@ const listAll = async (req, res) => {
     } catch (error) {
       return res.status(500).json({message: "Internal server error"})
     }   
-};
+}
 
 const topScore = async (req, res) => {
   try {
@@ -25,7 +25,7 @@ const findScore = async (id) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 const createScore = async (req, res) => {
   try {
@@ -34,7 +34,7 @@ const createScore = async (req, res) => {
   } catch (error) {
     return res.status(400).json(error);
   }
-};
+}
 
 const deleteScore = async (req, res) => {
   const id = req.params.id;
@@ -45,11 +45,11 @@ const deleteScore = async (req, res) => {
     } else {
       const deletedScore = await scoreModel.deleteScore(id)
       return res.status(200).json({ deletedScore })
-    };     
+    }    
   } catch (error) {
     return res.status(404).json(error)
   }
-};
+}
 
 module.exports = {
     listAll,
@@ -57,4 +57,4 @@ module.exports = {
     findScore,
     createScore,
     deleteScore
-};
+}

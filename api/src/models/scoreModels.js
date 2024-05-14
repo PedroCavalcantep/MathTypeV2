@@ -20,9 +20,9 @@ const findScore = async (id) => {
 }
 
 const createScore = async (scoreData) => {
-	const { score, id_usuario } = scoreData
-	const query = "INSERT INTO scores (score, id_usuario) VALUES ($1, $2) RETURNING *"
-	const createdScore = await pool.query(query, [score, id_usuario])
+	const { score, id_usuario, id_gamemode } = scoreData
+	const query = "INSERT INTO scores (score, id_usuario, id_gamemode) VALUES ($1, $2, $3) RETURNING *"
+	const createdScore = await pool.query(query, [score, id_usuario, id_gamemode])
 	return createdScore.rows
 }
 

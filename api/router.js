@@ -20,6 +20,7 @@ router.post("/login", userController.loginUser)
 router.get("/auth", userController.authCookie)
 
 router.post("/logout", userController.logout)
+
 // rotas score
 
 router.get("/score", scoreController.listAll)
