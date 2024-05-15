@@ -20,6 +20,7 @@ const createUser = async (req, res) => {
 	}
 }
 
+
 const findUser = async (x) => {
 	id = x
 	try {
@@ -29,6 +30,25 @@ const findUser = async (x) => {
 		console.log(error)
 	}
 }
+
+const updateUser = async (req, res) => {
+	const id = req.params.id
+	const {nome, senha, email, id_foto} = req.body
+
+	try {
+		const user = await findUser(id)
+		if (user == ""){
+			return res.status(404).json({message: "usuario não enctonrado"})
+		}else{
+			const updatedUser = await userModel.updateUser({nome, senha, email, id_foto, id})
+			return res.status(200).json({ updatedUser })
+		}
+	} catch (error) {
+			console.log(error)
+			return res.status(500).json({error: "não foi possivel atualizar o usuario"})
+	}
+}
+
 
 const deleteUser = async (req, res) => {
 	const id = req.params.id
@@ -102,6 +122,8 @@ const logout = async (req, res) => {
 	return res.status(200).json({ message: "deslogado com sucesso" })
 }
 
+
+
 module.exports = {
 	listAll,
 	createUser,
@@ -111,4 +133,5 @@ module.exports = {
 	loginUser,
 	authCookie,
 	logout,
+	updateUser,
 }

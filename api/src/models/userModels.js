@@ -40,6 +40,13 @@ const loginUser = async (user) => {
 	return loginUser.rows[0].id
 }
 
+const updateUser = async (users) => {
+	const { nome, email, senha, id_foto, id } = users
+	const query = 'UPDATE users SET nome = $1, email = $2, senha = $3, id_foto = $4 WHERE id = $5 RETURNING *'
+	const updatedUser = await pool.query(query, [nome, email, senha, id_foto, id])
+	return updatedUser.rows
+}
+
 module.exports = {
 	listAll,
 	createUser,
@@ -47,4 +54,5 @@ module.exports = {
 	getUser,
 	findUser,
 	loginUser,
+	updateUser,
 }

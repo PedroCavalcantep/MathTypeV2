@@ -16,6 +16,8 @@ router.get("/user", userController.listAll)
 
 router.post("/user", userController.createUser)
 
+router.put("/user/:id", userController.updateUser)
+
 router.delete("/user/:id", userController.deleteUser)
 
 router.get("/user/:id", userController.getUser)
@@ -40,5 +42,7 @@ router.delete("/score/:id", scoreController.deleteScore)
 
 router.post("/image", upload.single("file"), imageController.uploadImage)
 router.get("/image/:id", imageController.getImage)
+router.delete("/image/:id", imageController.deleteImage)
+router.put("/image/:id", upload.single("file"),  imageController.updateImage)
 
 module.exports = router
