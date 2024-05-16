@@ -5,10 +5,13 @@ import { ItensMenu } from "./ItensMenu"
 import Login from "./Login"
 import { useEffect, useState } from "react"
 import axios from "axios"
+import UserImage from "./userImage"
 
 export default function Navbar() {
 	const [loginState, setLogin] = useState(false)
 	const [isLogged, setIsLogged] = useState(false)
+	const [userName, setUserName] = useState("")
+	const [userImage, setUserImage] = useState(1)
 
 	const updateLoginStatus = (status) => {
 		setIsLogged(status)
@@ -24,7 +27,10 @@ export default function Navbar() {
 				withCredentials: true
 			})
 			.then((res) => {
-				console.log(res)
+				setUserName(res.data.nome)
+				console.log(res.data)
+				setUserImage(res.data.id_foto)
+
 				setIsLogged(true)
 			})
 			.catch((err) => {
@@ -59,8 +65,8 @@ export default function Navbar() {
 								onClick={toggleLogin}
 								className=" flex items-center gap-2 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
 							>
-								<Image src={Profile} alt="perfil" />
-								<span>Logado :D</span>
+								<span>{userName}</span>
+								<UserImage id={userImage} />
 							</button>
 						) : (
 							<div>

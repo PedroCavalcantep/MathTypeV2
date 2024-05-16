@@ -41,8 +41,11 @@ router.delete("/score/:id", scoreController.deleteScore)
 //rotas imagens
 
 router.post("/image", upload.single("file"), imageController.uploadImage)
+
 router.get("/image/:id", imageController.getImage)
+
 router.delete("/image/:id", imageController.deleteImage)
-router.put("/image/:id", upload.single("file"),  imageController.updateImage)
+
+router.put("/image/:id", upload.single("file"), imageController.updateImage)
 
 module.exports = router

@@ -20,7 +20,6 @@ const createUser = async (req, res) => {
 	}
 }
 
-
 const findUser = async (x) => {
 	id = x
 	try {
@@ -33,22 +32,21 @@ const findUser = async (x) => {
 
 const updateUser = async (req, res) => {
 	const id = req.params.id
-	const {nome, senha, email, id_foto} = req.body
+	const { nome, senha, email, id_foto } = req.body
 
 	try {
 		const user = await findUser(id)
-		if (user == ""){
-			return res.status(404).json({message: "usuario não enctonrado"})
-		}else{
-			const updatedUser = await userModel.updateUser({nome, senha, email, id_foto, id})
+		if (user == "") {
+			return res.status(404).json({ message: "usuario não enctonrado" })
+		} else {
+			const updatedUser = await userModel.updateUser({ nome, senha, email, id_foto, id })
 			return res.status(200).json({ updatedUser })
 		}
 	} catch (error) {
-			console.log(error)
-			return res.status(500).json({error: "não foi possivel atualizar o usuario"})
+		console.log(error)
+		return res.status(500).json({ error: "não foi possivel atualizar o usuario" })
 	}
 }
-
 
 const deleteUser = async (req, res) => {
 	const id = req.params.id
@@ -95,10 +93,10 @@ const loginUser = async (req, res) => {
 
 			res.cookie("jwt", token, {
 				httpOnly: true,
-				maxAge: 15 * 24 * 60 * 60 * 1000,
+				maxAge: 15 * 24 * 60 * 60 * 1000
 			})
 			res.status(201).json({
-				message: "Login realizado com sucesso",
+				message: "Login realizado com sucesso"
 			})
 		}
 	} catch (err) {
@@ -112,7 +110,9 @@ const authCookie = async (req, res) => {
 		if (!claims) {
 			return res.status(401).json({ message: "não autenticado" })
 		}
-		return res.send(claims)
+		const user = await userModel.getUser(claims.user)
+		console.log(user[0].id_foto)
+		return res.status(202).json({ nome: user[0].nome, id: claims.user, id_foto: user[0].id_foto })
 	} catch (error) {
 		return res.status(401).json({ message: "não autenticado" })
 	}
@@ -121,8 +121,6 @@ const logout = async (req, res) => {
 	res.cookie("jwt", "", { maxAge: 0 })
 	return res.status(200).json({ message: "deslogado com sucesso" })
 }
-
-
 
 module.exports = {
 	listAll,
@@ -133,5 +131,5 @@ module.exports = {
 	loginUser,
 	authCookie,
 	logout,
-	updateUser,
+	updateUser
 }
