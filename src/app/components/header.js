@@ -3,14 +3,34 @@ import Image from "next/image"
 import Profile from "../assets/profile.svg"
 import { ItensMenu } from "./ItensMenu"
 import Login from "./Login"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 export default function Navbar() {
 	const [loginState, setLogin] = useState(false)
+	const [isLogged, setIsLogged] = useState(false)
+
+	const updateLoginStatus = (status) => {
+		setIsLogged(status)
+	}
 
 	const toggleLogin = () => {
 		setLogin((loginState) => !loginState)
 	}
+
+	useEffect(() => {
+		axios
+			.get("http://localhost:3333/auth", {
+				withCredentials: true
+			})
+			.then((res) => {
+				console.log(res)
+				setIsLogged(true)
+			})
+			.catch((err) => {
+				setIsLogged(false)
+			})
+	}, [])
 
 	return (
 		<header className="w-full bg-corheader text-white py-1">
@@ -34,17 +54,33 @@ export default function Navbar() {
 					</ul>
 
 					<div>
-						<button
-							onClick={toggleLogin}
-							className=" flex items-center gap-2 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-blue-700"
-						>
-							<Image src={Profile} alt="perfil" />
-							<span>Login</span>
-						</button>
+						{isLogged ? (
+							<button
+								onClick={toggleLogin}
+								className=" flex items-center gap-2 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out"
+							>
+								<Image src={Profile} alt="perfil" />
+								<span>Logado :D</span>
+							</button>
+						) : (
+							<div>
+								<button
+									onClick={toggleLogin}
+									className=" flex items-center gap-2 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-blue-700"
+								>
+									<Image src={Profile} alt="perfil" />
+									<span>Login</span>
+								</button>
+								<Login
+									isOpen={loginState}
+									closeForm={toggleLogin}
+									updateLoginStatus={updateLoginStatus}
+								/>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
-			<Login isOpen={loginState} closeForm={toggleLogin} />
 		</header>
 	)
 }
