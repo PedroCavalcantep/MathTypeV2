@@ -8,7 +8,7 @@ export default function Home() {
 	return (
 		<div>
 			<div>
-				<Navbar></Navbar>
+				{/* <Navbar /> */}
 				<MainPage></MainPage>
 			</div>
 

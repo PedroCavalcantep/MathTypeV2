@@ -26,12 +26,12 @@ export default function Login({ isOpen, closeForm, updateLoginStatus }) {
 			)
 			.then((res) => {
 				if (res.status == 201) {
-					updateLoginStatus(true), closeForm(), router.refresh()
+					updateLoginStatus(true), closeForm(), router.push("/")
 				}
 			})
 			.catch((err) => console.log(err))
 	}
-	useEffect(() => {}, [senha])
+
 	if (isOpen) {
 		return (
 			<div

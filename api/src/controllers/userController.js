@@ -111,7 +111,6 @@ const authCookie = async (req, res) => {
 			return res.status(401).json({ message: "não autenticado" })
 		}
 		const user = await userModel.getUser(claims.user)
-		console.log(user[0].id_foto)
 		return res.status(202).json({ nome: user[0].nome, id: claims.user, id_foto: user[0].id_foto })
 	} catch (error) {
 		return res.status(401).json({ message: "não autenticado" })
