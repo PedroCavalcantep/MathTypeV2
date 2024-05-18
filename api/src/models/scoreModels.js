@@ -2,14 +2,33 @@ const pool = require("./connection")
 
 const listAll = async () => {
 	const query = "SELECT * FROM scores"
-	const score = await pool.query(query)
-	return score.rows
+	const scores = await pool.query(query)
+	return scores.rows
 }
 
-const topScore = async () => {
+const bestScores = async (id_usuario) => {
+	const query = 
+	`SELECT scores.id_usuario,
+			users.nome,
+			MAX(scores.score) AS best_score, 
+			scores.id_gamemode
+	FROM scores
+	INNER JOIN users on scores.id_usuario = users.id
+	WHERE id_usuario = $1
+	GROUP BY id_usuario, users.nome, id_gamemode`
+	const scores = await pool.query(query, [id_usuario])
+	return scores.rows
+}
+
+const topScores = async (id_gamemode) => {
 	const query =
-		"SELECT users.nome, scores.score FROM users INNER JOIN scores on users.id = scores.id_usuario ORDER BY score DESC LIMIT 10"
-	const scores = await pool.query(query)
+		`SELECT users.nome, scores.score, scores.id_gamemode
+		FROM users 
+		INNER JOIN scores on users.id = scores.id_usuario 
+		WHERE id_gamemode = $1 
+		ORDER BY score 
+		DESC LIMIT 10`
+	const scores = await pool.query(query, [id_gamemode])
 	return scores.rows
 }
 
@@ -28,13 +47,14 @@ const createScore = async (scoreData) => {
 
 const deleteScore = async (id) => {
 	const query = "DELETE FROM scores WHERE id = $1 RETURNING *"
-	const deletedScore = await pool.query(query, [id])
-	return deletedScore.rows
+	const score = await pool.query(query, [id])
+	return score.rows
 }
 
 module.exports = {
 	listAll,
-	topScore,
+	bestScores,
+	topScores,
 	findScore,
 	createScore,
 	deleteScore,

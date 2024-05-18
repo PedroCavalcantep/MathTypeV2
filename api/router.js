@@ -31,11 +31,9 @@ router.post("/logout", userController.logout)
 // rotas score
 
 router.get("/score", scoreController.listAll)
-
-router.get("/topScore", scoreController.topScore)
-
+router.get("/topScores/:id", scoreController.topScores)
+router.get("/bestScores/:id", scoreController.bestScores)
 router.post("/score", scoreController.createScore)
-
 router.delete("/score/:id", scoreController.deleteScore)
 
 //rotas imagens

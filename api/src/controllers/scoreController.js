@@ -9,12 +9,31 @@ const listAll = async (req, res) => {
     }   
 }
 
-const topScore = async (req, res) => {
+const bestScores = async (req, res) => {
+  const id = req.params.id
   try {
-    const score = await scoreModel.topScore();
-    return res.status(200).json({score})
+    const score = await scoreModel.bestScores(id)
+    if (score == "") {
+      return res.status(404).json("Usuário não encontrado.")
+    } else {
+      return res.status(200).json({score})
+    }
   } catch (error) {
-    return res.status(500).json(error)
+    return res.status(404).json(error)
+  }
+}
+
+const topScores = async (req, res) => {
+  const id = req.params.id
+  try {
+    const score = await scoreModel.topScores(id);
+    if (score == "") {
+      return res.status(404).json("Gamemode não encontrado.")
+    } else {
+      return res.status(200).json({score})
+    }
+  } catch (error) {
+    return res.status(404).json(error)
   }
 }
 
@@ -53,7 +72,8 @@ const deleteScore = async (req, res) => {
 
 module.exports = {
     listAll,
-    topScore,
+    bestScores,
+    topScores,
     findScore,
     createScore,
     deleteScore
