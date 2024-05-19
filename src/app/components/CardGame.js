@@ -8,7 +8,7 @@ export default function CardGame() {
 
     return(
             <div className=" flex max-w-5x1 mx-auto gap-8 group">
-              <div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 text-white text-lg cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-600 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition duration-300 ease-in-out">
+              <div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 text-white text-lg cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-900 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
                
              <Image
              src={Timer}
@@ -19,7 +19,7 @@ export default function CardGame() {
             <p>Contas contra o tempo</p>
               </div>
                   
-              <div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 text-white text-lg cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-600 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition duration-300 ease-in-out">
+              <div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 text-white text-lg cursor-pointer font-extrabold rounded-xl shadow-lg shadow- p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
                
                <Image
                src={Halter}
@@ -30,7 +30,7 @@ export default function CardGame() {
               <p>Contas em tempo livre</p>
               </div>
 
-                <div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 text-white text-xl cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-600 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition duration-300 ease-in-out">
+                <div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:blur-sm hover:!blur-none group-hover:scale-[0.85] hover:!scale-100 text-white text-xl cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-900 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
                
              <Image
              src={Icon2}

@@ -7,25 +7,15 @@ import Close from "../assets/close_icon.svg";
 import LogoSmall from "../assets/logo_small.svg";
 import GoogleLogo from "../assets/GooGoo.svg"
 
-export default function Login({ isOpen, closeForm }) {
 
-
-  if (isOpen) {
-    return (
-      
-      <div
-        className=" fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center text-white "
-      >
-        <div className="flex flex-col w-[500px] ">
-          <div className="flex flex-col items-center gap-4 pb-8  rounded-3xl bg-[#333A45]  ">
-          <button onClick={closeForm} className=" px-3 py-3  place-self-end">
-            <Image 
-            src={Close} 
-            alt="Close"
-            className="hover:bg-gray-400 hover:text-gray-700 transition duration-300 ease-in-out rounded-full" 
-            />
+export function Register() {
+  return (
+    <div className="flex flex-col w-[500px] ">
+          <button onClick={closeForm} className=" place-self-end">
+            <Image src={Close} alt="Close" />
           </button>
 
+          <div className="flex flex-col items-center gap-4 py-8  rounded-3xl bg-[#333A45]  ">
             <Image src={LogoSmall} alt="LogoSmall" />
             <span className="font-bold text-3xl">Login In MathType</span>
 
@@ -63,14 +53,10 @@ export default function Login({ isOpen, closeForm }) {
               <span className="flex place-self-center px-10 font-semibold text-xs">Continue with Google</span>
             </button>
 
-            <span className=" text-xs">Not have an account yet? <button  className=" hover:text-blue-100 transition duration-300 ease-in-out text-blue-600 "> Register</button>
+            <span className=" text-xs">Not have an account yet? <button className=" hover:text-blue-100 transition duration-300 ease-in-out text-blue-600 ">Register</button>
             </span>
 
           </div>
         </div>
-      </div>
-    );
-  } else {
-    return null;
-  }
+  )
 }

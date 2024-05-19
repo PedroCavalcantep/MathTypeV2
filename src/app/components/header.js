@@ -7,7 +7,7 @@ import { useState } from "react"
 
 export default function Navbar() {
 	const [loginState, setLogin] = useState(false)
-
+	
 	const toggleLogin = () => {
 		setLogin((loginState) => !loginState)
 	}
@@ -15,24 +15,13 @@ export default function Navbar() {
 	return (
 		<header className="w-full bg-corheader text-white py-1">
 			<div className="w-full max-w-[1246px] px-[15px] mx-auto">
-				<div className="flex justify-between items-center gap-14">
+				<div className="flex justify-around items-center gap-14">
 					<div>
 						<button className=" text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-gray-500">
 							MathType
 						</button>
 					</div>
-					<ul className="flex items-center  gap-14">
-						<li>
-							<ItensMenu name="About" />
-						</li>
-						<li>
-							<ItensMenu name="Contact" />
-						</li>
-						<li>
-							<ItensMenu name="Donate" />
-						</li>
-					</ul>
-
+				
 					<div>
 						<button
 							onClick={toggleLogin}
