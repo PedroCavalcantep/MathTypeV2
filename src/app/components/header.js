@@ -4,12 +4,17 @@ import Profile from "../assets/profile.svg"
 import { ItensMenu } from "./ItensMenu"
 import Login from "./Login"
 import { useState } from "react"
+import Register from "./Register"
 
 export default function Navbar() {
 	const [loginState, setLogin] = useState(false)
-	
+	const [registerState, setRegister] = useState(false)
+
 	const toggleLogin = () => {
 		setLogin((loginState) => !loginState)
+	}
+	const toggleRegister = () => {
+		setRegister((registerState) => !registerState)
 	}
 
 	return (
@@ -21,7 +26,7 @@ export default function Navbar() {
 							MathType
 						</button>
 					</div>
-				
+
 					<div>
 						<button
 							onClick={toggleLogin}
@@ -33,7 +38,8 @@ export default function Navbar() {
 					</div>
 				</div>
 			</div>
-			<Login isOpen={loginState} closeForm={toggleLogin} />
+			<Login isOpen={loginState} closeForm={toggleLogin} toggleRegister={toggleRegister} />
+			<Register isOpen={registerState} closeForm={toggleRegister} toggleLogin={toggleLogin} />
 		</header>
 	)
 }
