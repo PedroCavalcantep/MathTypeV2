@@ -14,7 +14,18 @@ module.exports = withMT({
       colors: {
         corheader: '#2E343D',
         backgroundColor: '#212529'
-      }
+      },
+
+      keyframes: {
+        fadeInOut: {
+          '0%, 100%': { opacity: '0' },
+          '50%': { opacity: '1' },
+        },
+      },
+
+      animation: {
+        fadeInOut: 'fadeInOut 2s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
