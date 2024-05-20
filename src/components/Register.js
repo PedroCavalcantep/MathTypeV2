@@ -31,7 +31,7 @@ export default function Register({ isOpen, closeForm, toggleLogin }) {
 							<div className=" flex flex-col gap-8 w-72">
 								<Input label="Username" color="white" />
 
-								<Input label="Email" color="white" type="password" />
+								<Input label="Email" color="white" type="email" />
 
 								<Input label="Password" color="white" type="password" />
 
