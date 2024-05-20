@@ -1,8 +1,8 @@
 import Image from "next/image"
-import MainPage from "./components/MainPage"
-import CardGame from "./components/CardGame"
-import Login from "./components/Login"
-import Footer from "./components/Footer"
+import MainPage from "../components/MainPage"
+import CardGame from "../components/CardGame"
+import Login from "../components/Login"
+import Footer from "../components/Footer"
 
 export default function Home() {
 	return (

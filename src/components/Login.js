@@ -8,6 +8,7 @@ import Close from "../assets/close_icon.svg"
 import LogoSmall from "../assets/logo_small.svg"
 import GoogleLogo from "../assets/GooGoo.svg"
 
+
 export default function Login({ isOpen, closeForm, toggleRegister }) {
 	if (isOpen) {
 		return (

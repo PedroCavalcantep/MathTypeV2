@@ -1,12 +1,15 @@
 "use client"
 import Image from "next/image"
+import Link from "next/link"
 import Profile from "../assets/profile.svg"
 import { ItensMenu } from "./ItensMenu"
 import Login from "./Login"
 import { useState } from "react"
 import Register from "./Register"
+import { useRouter } from "next/navigation"
 
 export default function Navbar() {
+	const Router = useRouter()
 	const [loginState, setLogin] = useState(false)
 	const [registerState, setRegister] = useState(false)
 
@@ -22,9 +25,11 @@ export default function Navbar() {
 			<div className="w-full max-w-[1246px] px-[15px] mx-auto">
 				<div className="flex justify-around items-center gap-14">
 					<div>
-						<button className=" text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-gray-500">
-							MathType
-						</button>
+						<Link href={"/"}>
+							<button className=" text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-gray-500">
+								MathType
+							</button>
+						</Link>
 					</div>
 
 					<div>
