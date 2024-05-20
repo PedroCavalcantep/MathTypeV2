@@ -6,7 +6,7 @@ import Image from "next/image";
 import Close from "../assets/close_icon.svg";
 import LogoSmall from "../assets/logo_small.svg";
 
-export default function Home() {
+export default function Register() {
   return (
     <div className=" fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center text-white ">
       <div className="flex flex-col w-[500px] ">
