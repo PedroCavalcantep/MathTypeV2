@@ -9,7 +9,7 @@ import LogoSmall from "../assets/logo_small.svg"
 export default function Register({ isOpen, closeForm, toggleLogin }) {
 	if (isOpen) {
 		return (
-			<div className=" fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center text-white ">
+			<div className=" fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center text-white z-50">
 				<div className="flex flex-col w-[500px] ">
 					<div className="flex flex-col items-center gap-6 pb-8  rounded-3xl bg-[#333A45]  ">
 						<div className="flex flex-row justify-center w-[470px] ">
