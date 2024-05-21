@@ -13,7 +13,7 @@ export default function Register({ isOpen, closeForm, toggleLogin }) {
 				<div className="flex flex-col w-[500px] ">
 					<div className="flex flex-col items-center gap-6 pb-8  rounded-3xl bg-[#333A45]  ">
 						<div className="flex flex-row justify-center w-[470px] ">
-							<Image className="ml-52 " src={LogoSmall} alt="LogoSmall" />
+							<Image className="ml-52 mt-3" src={LogoSmall} alt="LogoSmall" />
 
 							<button className="px-3 py-3 ml-auto">
 								<Image
