@@ -34,6 +34,7 @@ router.get("/score", scoreController.listAll)
 router.get("/topScores/:id", scoreController.topScores)
 router.get("/bestScores/:id", scoreController.bestScores)
 router.post("/score", scoreController.createScore)
+router.put("/score/:id", scoreController.updateScore)
 router.delete("/score/:id", scoreController.deleteScore)
 
 //rotas imagens

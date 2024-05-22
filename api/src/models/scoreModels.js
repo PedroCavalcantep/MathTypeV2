@@ -40,9 +40,25 @@ const findScore = async (id) => {
 
 const createScore = async (scoreData) => {
 	const { score, id_usuario, id_gamemode } = scoreData
-	const query = "INSERT INTO scores (score, id_usuario, id_gamemode) VALUES ($1, $2, $3) RETURNING *"
+	const query = 
+	`INSERT INTO scores (score, id_usuario, id_gamemode) 
+	VALUES ($1, $2, $3) 
+	RETURNING *`
 	const createdScore = await pool.query(query, [score, id_usuario, id_gamemode])
 	return createdScore.rows
+}
+
+const updateScore = async (scores) => {
+	const {score, id_usuario, id_gamemode, id} = scores;
+	const query = 
+	`UPDATE scores 
+	SET score = $1, 
+		id_usuario = $2, 
+		id_gamemode = $3
+	WHERE id = $4
+	RETURNING *`
+	const updatedScores = await pool.query(query, [score, id_usuario, id_gamemode, id])
+	return updatedScores.rows
 }
 
 const deleteScore = async (id) => {
@@ -57,5 +73,6 @@ module.exports = {
 	topScores,
 	findScore,
 	createScore,
+	updateScore,
 	deleteScore,
 }
