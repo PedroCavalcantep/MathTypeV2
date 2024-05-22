@@ -27,3 +27,7 @@ html, body {
 .overflow-hidden {
   overflow: hidden;
 }
+
+.cover-background {
+  background-size: cover; /* Garantir que o background se ajuste automaticamente */
+}

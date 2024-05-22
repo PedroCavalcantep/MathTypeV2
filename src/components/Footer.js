@@ -1,6 +1,5 @@
 "use client";
 
-import Instagram from "../assets/instagram.svg";
 import { Typography } from "@material-tailwind/react";
 import Image from "next/image";
 import LogoSmall from "../assets/logo_small.svg";
