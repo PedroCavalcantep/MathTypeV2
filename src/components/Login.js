@@ -8,7 +8,6 @@ import Close from "../assets/close_icon.svg"
 import LogoSmall from "../assets/logo_small.svg"
 import GoogleLogo from "../assets/GooGoo.svg"
 
-
 export default function Login({ isOpen, closeForm, toggleRegister }) {
 	if (isOpen) {
 		return (
@@ -53,10 +52,12 @@ export default function Login({ isOpen, closeForm, toggleRegister }) {
 							color="blue-gray"
 							className="flex items-center gap-3 text-white hover:bg-gray-700 "
 						>
-							<img
+							<Image
 								src="https://docs.material-tailwind.com/icons/google.svg"
 								alt="metamask"
 								className="h-6 w-6"
+								width={0}
+								height={0}
 							/>
 							Continue with Google
 						</Button>
