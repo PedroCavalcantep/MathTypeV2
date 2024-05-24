@@ -27,6 +27,8 @@ module.exports = withMT({
         fadeInOut: 'fadeInOut 2s ease-in-out infinite',
       },
     },
+
+
   },
   plugins: [],
 });

@@ -2,34 +2,31 @@
 
 import Image from "next/image";
 import Stopwatch from "../../assets/stopwatch.svg";
-import { Textarea } from "@material-tailwind/react";
+import { Input } from "@material-tailwind/react";
 
 export default function Teste() {
   return (
-    <div className="flex flex-col bg-backgroundColor w-full h-[94vh] cover-background text-white">
-      <div className=" flex w-full py-7 px-9">
-        <div className="flex flex-row justify-start items-center px-7 bg-[#444C58] w-64 h-24 gap-7 text-5xl rounded-full">
+    <div className="flex flex-col h-screen bg-backgroundColor w-full text-white overflow-hidden">
+      {/* Header */}
+      <div className="flex py-7 px-9 rounded-full">
+        <div className="flex flex-row justify-start items-center px-7 bg-[#444C58] w-60 h-20 gap-7 text-4xl rounded-full">
           <Image 
-              src={Stopwatch}
-              alt="Stopwatch"
-              height={60}
-              width={60}
+            src={Stopwatch}
+            alt="Stopwatch"
+            height={60}
+            width={60}
           />
-
           <p>60 s</p>
         </div>
       </div>
 
-      <div className="flex flex-col justify-around items-center h-full">
-        <div className=" flex flex-row justify-center items-center w-[800px] h-60 bg-[#444c58] rounded-[50px]">Calculos</div>
-        <div>
-        <Textarea 
-        size="md" 
-        label="Textarea Medium" 
-     
-        color="white"
-        
-        />
+      {/* Main Content */}
+      <div className="flex flex-col flex-1 justify-start gap-14 items-center">
+        <div className="flex justify-center items-center w-[800px] h-48 text-7xl bg-[#444c58] rounded-[50px]">
+          8x7
+        </div>
+        <div className="w-72">
+          <Input color="white" />
         </div>
       </div>
     </div>
