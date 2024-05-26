@@ -31,3 +31,14 @@ html, body {
 .cover-background {
   background-size: cover; /* Garantir que o background se ajuste automaticamente */
 }
+
+/* Remover a seta de aumento e diminuição */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}

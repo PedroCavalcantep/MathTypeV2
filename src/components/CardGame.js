@@ -12,7 +12,7 @@ export default function CardGame() {
 	return (
 		<div className=" flex max-w-5x1 mx-auto gap-8 group">
 			<Link href={"/timeattack"}>
-				<div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:scale-[0.95] hover:!scale-110 text-white text-lg cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-900 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
+				<div className="bg-[#434C5E] duration-500 w-[280px] h-[250px] group-hover:scale-[0.95] hover:!scale-110 text-white text-lg text-center cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-900 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
 					<Image src={Timer} alt="Timer" />
 
 					<p>Time Attack</p>
@@ -21,7 +21,7 @@ export default function CardGame() {
 			</Link>
 
 			<Link href={"/training"}>
-				<div className="bg-[#434C5E] duration-500 w-[280px] h-[250px]  group-hover:scale-[0.95] hover:!scale-110 text-white text-lg cursor-pointer font-extrabold rounded-xl shadow-lg shadow- p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
+				<div className="bg-[#434C5E] duration-500 w-[280px] h-[250px]  group-hover:scale-[0.95] hover:!scale-110 text-white text-lg text-center cursor-pointer font-extrabold rounded-xl shadow-lg shadow- p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
 					<Image src={Dumbbell} alt="Halter" />
 
 					<p>Training Mode</p>
@@ -29,7 +29,7 @@ export default function CardGame() {
 				</div>
 			</Link>
 			<Link href={"/combination"}>
-				<div className="bg-[#434C5E] duration-500 w-[280px] h-[250px]  group-hover:scale-[0.95] hover:!scale-110 text-white text-lg cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-900 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
+				<div className="bg-[#434C5E] duration-500 w-[280px] h-[250px]  group-hover:scale-[0.95] hover:!scale-110 text-white text-lg text-center cursor-pointer font-extrabold rounded-xl shadow-lg shadow-gray-900 p-8 gap-5 rounded-x1 flex flex-col justify-center items-center hover:bg-blue-400  hover:text-white  transition ease-in-out">
 					<Image src={Icon2} alt="icon2" />
 
 					<p>Combination</p>
