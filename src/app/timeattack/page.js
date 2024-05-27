@@ -58,9 +58,11 @@ export default function TimeAttack() {
 		}
 	}
 
-	// Effect do timer
 	useEffect(() => {
 		gerarConta()
+	}, [])
+	// Effect do timer
+	useEffect(() => {
 		if (isGameOn) {
 			const interval = setInterval(() => {
 				setTimer((prevTimer) => {
