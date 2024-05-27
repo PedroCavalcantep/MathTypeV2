@@ -55,6 +55,22 @@ const createScore = async (req, res) => {
   }
 }
 
+const updateScore = async (req, res) => {
+  const id = req.params.id
+  const {score, id_usuario, id_gamemode} = req.body
+  try {
+    const scores = await findScore(id)
+    if (scores == "") {
+      return res.status(404).json({message: "Pontuação não encontrada"})
+    } else {
+      const updatedScore = await scoreModel.updateScore({score, id_usuario, id_gamemode, id})
+      return res.status(200).json({ updatedScore })
+    } 
+  } catch (error) {
+    return res.status(500).json({message: "Internal Server Error"})
+  }
+}
+
 const deleteScore = async (req, res) => {
   const id = req.params.id;
   try {
@@ -76,5 +92,6 @@ module.exports = {
     topScores,
     findScore,
     createScore,
+    updateScore,
     deleteScore
 }
