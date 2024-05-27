@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import IconRegister from "../assets/register_icon.svg";
 import DumbCat from "../assets/CatDumb.png"
 import { Avatar, Typography, Badge } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import {
   Popover,
   PopoverHandler,
@@ -43,7 +44,7 @@ export default function Navbar() {
           </div>
 
           <div className="flex flex-row gap-5">
-            <button
+           {/*  <button
               onClick={toggleLogin}
               className=" flex items-center gap-2 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-blue-700"
             >
@@ -58,9 +59,9 @@ export default function Navbar() {
             >
               <Image src={IconRegister} alt="IconRegister" />
               <span>Register</span>
-            </button>
+            </button> */}
 
-           {/*  <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4">
               <Popover
                 placement="bottom"
                 animate={{
@@ -150,7 +151,7 @@ export default function Navbar() {
                   </Typography>
                 </div>
               </Popover>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

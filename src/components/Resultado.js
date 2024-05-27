@@ -9,7 +9,7 @@ import {
 import Chart from "react-apexcharts";
 import Image from "next/image";
 import { Button } from "@material-tailwind/react";
-import DumbCat from "../../assets/CatDumb.png"
+import DumbCat from "../assets/CatDumb.png"
 import { Square3Stack3DIcon } from "@heroicons/react/24/outline";
 
 const userCorrectCount = 70;
