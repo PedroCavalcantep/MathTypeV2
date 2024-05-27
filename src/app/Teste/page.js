@@ -7,6 +7,7 @@ import {Button} from "@material-tailwind/react"
 import DumbCat from "../../assets/CatDumb.png"
 import {Square3Stack3DIcon} from "@heroicons/react/24/outline"
 
+// Dynamically import the Chart component
 const Chart = dynamic(() => import("react-apexcharts"), {ssr: false})
 
 const userCorrectCount = 3
