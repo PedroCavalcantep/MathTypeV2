@@ -1,9 +1,11 @@
 "use client"
 import {useState, useEffect} from "react"
 import StartTimeAttack from "../../components/StartTimeAttack"
-import Image from "next/image"
 import Stopwatch from "../../assets/stopwatch.svg"
 import Resultado from "../../components/Resultado"
+import dynamic from "next/dynamic"
+
+const Image = dynamic(() => import("next/image"), {ssr: false})
 
 export default function TimeAttack() {
 	const [isGameOn, setGame] = useState(true)
@@ -100,16 +102,19 @@ export default function TimeAttack() {
 					) : (
 						<div className="flex flex-col h-screen bg-backgroundColor w-full text-white overflow-hidden">
 							<div className="flex flex-row justify-between py-7 px-9 rounded-full">
-								<div className="flex flex-row justify-start items-center px-7 bg-[#444C58] w-60 h-20 gap-7 text-4xl rounded-full ">
-									<Image
-										src={Stopwatch}
-										alt="Stopwatch"
-										height={60}
-										width={60}
-										className="animate-fadeInOut"
-									/>
-									<p className="animate-fadeInOut">{timer} s</p>
-								</div>
+								{typeof window !== "undefined" && (
+									<div className="flex flex-row justify-start items-center px-7 bg-[#444C58] w-60 h-20 gap-7 text-4xl rounded-full ">
+										<Image
+											src={Stopwatch}
+											alt="Stopwatch"
+											height={60}
+											width={60}
+											className="animate-fadeInOut"
+										/>
+										<p className="animate-fadeInOut">{timer} s</p>
+									</div>
+								)}
+
 								<div className="flex flex-row justify-start items-center px-7 gap-7 text-2xl rounded-full ">
 									<div className="font-semibold">Score:</div>
 									{score}

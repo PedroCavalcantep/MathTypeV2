@@ -1,15 +1,19 @@
-"use client"
+import {useState} from "react"
 
 import {Card, CardBody, CardHeader, Typography} from "@material-tailwind/react"
-import Chart from "react-apexcharts"
-import Image from "next/image"
-import {Button} from "@material-tailwind/react"
+import dynamic from "next/dynamic"
+
+// Dynamically import components/libraries that rely on window
+const Chart = dynamic(() => import("react-apexcharts"), {ssr: false})
+const Image = dynamic(() => import("next/image"), {ssr: false})
+const Button = dynamic(() => import("@material-tailwind/react").then((mod) => mod.Button), {
+	ssr: false
+})
+
+// Import assets as usual
 import DumbCat from "../assets/CatDumb.png"
-import {Square3Stack3DIcon} from "@heroicons/react/24/outline"
-import {useRouter} from "next/navigation"
 
 export default function Example({acertos, erros, reiniciar}) {
-	const router = useRouter()
 	const userCorrectCount = acertos
 	const userErrorCount = erros
 
@@ -33,6 +37,7 @@ export default function Example({acertos, erros, reiniciar}) {
 			}
 		}
 	}
+
 	return (
 		<div className="flex flex-col justify-center items-center w-full h-[90vh]">
 			<Card className="w-[700px]">
