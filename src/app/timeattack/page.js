@@ -8,10 +8,10 @@ import dynamic from "next/dynamic"
 const Image = dynamic(() => import("next/image"), {ssr: false})
 
 export default function TimeAttack() {
-	const [isGameOn, setGame] = useState(true)
+	const [isGameOn, setGame] = useState(false)
 	const [showResult, setShowResult] = useState(false)
 	const [numeros, setNumeros] = useState([])
-	const [timer, setTimer] = useState(10)
+	const [timer, setTimer] = useState(30)
 	const [score, setScore] = useState(0)
 	const [acertos, setAcertos] = useState(0)
 	const [erros, setErros] = useState(0)
