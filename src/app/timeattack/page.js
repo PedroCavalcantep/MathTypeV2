@@ -76,6 +76,7 @@ export default function TimeAttack() {
 
 			return () => clearInterval(interval)
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isGameOn])
 	useEffect(() => {
 		setResultado(numeros[0] * numeros[1])
