@@ -1,7 +1,7 @@
 import Dumbbell from "../assets/dumbbell.svg"
 import Image from "next/image"
 
-export default function StartTimeAttack() {
+export default function StartTimeAttack({startGame}) {
 	return (
 		<div className=" flex justify-center items-center w-full h-[837px] bg-backgroundColor">
 			<div className=" flex flex-col items-center py-6 px-6 gap-9 mb-20 text-white bg-gray-700 w-4/5 h-[500px] rounded-2xl ">
@@ -19,7 +19,10 @@ export default function StartTimeAttack() {
 					desempenho com tempo ilimitado. A prática leva à perfeição!
 				</p>
 
-				<button className=" bg-transparent border-2 border-blue-400 hover:bg-blue-400 text-blue-400 font-bold hover:text-white py-2 px-10  transition duration-300 ease-in-out rounded">
+				<button
+					className=" bg-transparent border-2 border-blue-400 hover:bg-blue-400 text-blue-400 font-bold hover:text-white py-2 px-10  transition duration-300 ease-in-out rounded"
+					onClick={startGame}
+				>
 					<span>Start</span>
 				</button>
 			</div>

@@ -1,3 +1,7 @@
 export default function StartTimeAttack() {
-	return <div></div>
+	return (
+	<div>
+
+	</div>
+	)
 }

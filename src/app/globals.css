@@ -6,3 +6,39 @@ html, body {
   background-color: #101010;
 }
 
+::-webkit-scrollbar {
+  width: 8px; /* Largura da scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #000000; /* Cor do track da scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888; /* Cor do thumb da scrollbar */
+  border-radius: 10px; /* Borda arredondada do thumb */
+  border: 1px solid #888; /* Cor do border do thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor do thumb ao passar o mouse */
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.cover-background {
+  background-size: cover; /* Garantir que o background se ajuste automaticamente */
+}
+
+/* Remover a seta de aumento e diminuição */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
