@@ -127,7 +127,6 @@ export default function TimeAttack() {
 								<div className="flex justify-center items-center w-[800px] h-48 text-7xl bg-[#444c58] rounded-[50px]">
 									{numeros[0]} x {numeros[1]}
 								</div>
-								{resultado}
 
 								<div className="max-w-md mx-auto mt-10 p-6">
 									<label
