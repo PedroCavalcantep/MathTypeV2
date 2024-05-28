@@ -16,7 +16,6 @@ const createUser = async (req, res) => {
 		const user = await userModel.createUser(req.body)
 		return res.status(201).json({user})
 	} catch (err) {
-		console.log(err)
 		return res.status(500).json({error: "nome ou email ja utilizado"})
 	}
 }
@@ -44,7 +43,6 @@ const updateUser = async (req, res) => {
 			return res.status(200).json({updatedUser})
 		}
 	} catch (error) {
-		console.log(error)
 		return res.status(500).json({error: "não foi possivel atualizar o usuario"})
 	}
 }
@@ -101,7 +99,6 @@ const loginUser = async (req, res) => {
 			})
 		}
 	} catch (err) {
-		console.log(err)
 		return res.status(404).json({error: "credenciais invalidas"})
 	}
 }
