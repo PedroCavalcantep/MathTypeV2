@@ -1,4 +1,5 @@
 const pool = require('./connection')
+const bcrypt = require('bcrypt')
 
 const listAll = async () => {
 	const query = 'SELECT * FROM users'
@@ -7,10 +8,15 @@ const listAll = async () => {
 }
 
 const createUser = async (users) => {
-	const { nome, email, senha } = users
+	const { nome, email, senha } = users 
+
+	//encriptando as senhas
+	const salt = await bcrypt.genSalt(10)
+	const hashedPassword = await bcrypt.hash(senha, salt)
+	//
 	const query = 'INSERT INTO users (nome, email, senha, id_foto) VALUES ($1, $2, $3, 1 ) RETURNING *'
-	const createdUser = await pool.query(query, [nome, email, senha])
-	return createdUser.rows
+	const createdUser = await pool.query(query, [nome, email, hashedPassword])
+	return createdUser.rows[0]
 }
 
 const findUser = async (id) => {
@@ -34,11 +40,20 @@ const getUser = async (id) => {
 
 const loginUser = async (user) => {
 	const { email, senha } = user
+	const query = 'SELECT * FROM users WHERE email = $1'
+	const loginUser = await pool.query(query, [email])
 
-	const query = 'SELECT * FROM users WHERE email = $1 AND senha = $2'
-	const loginUser = await pool.query(query, [email, senha])
-	return loginUser.rows[0].id
-}
+	  // Comparar a senha fornecida com a senha criptografada
+	  const isMatch = await bcrypt.compare(senha, user.senha);
+	  
+	  if (!isMatch) {
+		return null; // Senha incorreta
+	  }
+	
+	  return loginUser.rows[0].id; // Login bem-sucedido
+	};
+	//
+
 
 const updateUser = async (users) => {
 	const { nome, email, senha, id_foto, id } = users

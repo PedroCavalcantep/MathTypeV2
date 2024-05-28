@@ -16,6 +16,7 @@ const createUser = async (req, res) => {
 		const user = await userModel.createUser(req.body)
 		return res.status(201).json({ user })
 	} catch (err) {
+		console.log(err)
 		return res.status(500).json({ error: "nome ou email ja utilizado" })
 	}
 }
@@ -102,6 +103,7 @@ const loginUser = async (req, res) => {
 			})
 		}
 	} catch (err) {
+		console.log(err)
 		return res.status(404).json(err)
 	}
 }
@@ -112,6 +114,7 @@ const authCookie = async (req, res) => {
 		if (!claims) {
 			return res.status(401).json({ message: "não autenticado" })
 		}
+		
 		return res.send(claims)
 	} catch (error) {
 		return res.status(401).json({ message: "não autenticado" })
