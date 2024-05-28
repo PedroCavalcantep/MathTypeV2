@@ -1,9 +1,6 @@
-import {useState} from "react"
-
 import {Card, CardBody, CardHeader, Typography} from "@material-tailwind/react"
 import dynamic from "next/dynamic"
-
-// Dynamically import components/libraries that rely on window
+import Link from "next/link"
 const Chart = dynamic(() => import("react-apexcharts"), {ssr: false})
 const Image = dynamic(() => import("next/image"), {ssr: false})
 const Button = dynamic(() => import("@material-tailwind/react").then((mod) => mod.Button), {
@@ -82,9 +79,11 @@ export default function Example({acertos, erros, reiniciar}) {
 						>
 							Recomeçar
 						</Button>
-						<Button variant="filled" size="lg" className=" w-44 h-14 bg-[#444c58] ">
-							Retornar
-						</Button>
+						<Link href={"/"}>
+							<Button variant="filled" size="lg" className=" w-44 h-14 bg-[#444c58] ">
+								Retornar
+							</Button>
+						</Link>
 					</div>
 				</CardBody>
 			</Card>

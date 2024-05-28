@@ -23,7 +23,7 @@ export default function Navbar() {
 	const Router = useRouter()
 	const [loginState, setLogin] = useState(false)
 	const [registerState, setRegister] = useState(false)
-	const [isLogged, setLogged] = useState(false)
+	const [isLogged, setLogged] = useState(true)
 
 	const toggleLogin = () => {
 		setLogin((loginState) => !loginState)
@@ -87,7 +87,12 @@ export default function Navbar() {
 													</ListItem>
 												</a>
 												<a href="#" className="text-initial font-medium text-blue-gray-500">
-													<ListItem className="text-red-800">
+													<ListItem
+														className="text-red-800"
+														onClick={() => {
+															setLogged(false)
+														}}
+													>
 														<ListItemPrefix>
 															<svg
 																xmlns="http://www.w3.org/2000/svg"

@@ -27,7 +27,7 @@ export default function Login({ isOpen, closeForm, toggleRegister }) {
 
 						<div className="flex flex-col gap-2">
 							<div className=" flex flex-col gap-8 w-72">
-								<Input label="Email Endress" color="white" />
+								<Input label="Email Address" color="white" />
 
 								<Input label="Password" color="white" type="password" />
 							</div>

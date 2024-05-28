@@ -21,6 +21,7 @@ export default function TimeAttack() {
 	const gerarNumeros = (min, max) => {
 		return Math.floor(Math.random() * (max - min)) + min
 	}
+
 	const gerarConta = () => {
 		setNumeros([gerarNumeros(2, 10), gerarNumeros(2, 10)])
 	}
