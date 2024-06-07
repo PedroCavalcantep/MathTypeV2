@@ -54,9 +54,13 @@ const loginUser = async (user) => {
 
 const updateUser = async (users) => {
 	const {nome, email, senha, id_foto, id} = users
+
+	const salt = await bcrypt.genSalt(10)
+	const hashedPassword = await bcrypt.hash(senha, salt)
+
 	const query =
 		"UPDATE users SET nome = $1, email = $2, senha = $3, id_foto = $4 WHERE id = $5 RETURNING *"
-	const updatedUser = await pool.query(query, [nome, email, senha, id_foto, id])
+	const updatedUser = await pool.query(query, [nome, email, hashedPassword, id_foto, id])
 	return updatedUser.rows
 }
 
