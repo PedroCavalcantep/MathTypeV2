@@ -43,7 +43,6 @@ const updateUser = async (req, res) => {
 			return res.status(200).json({updatedUser})
 		}
 	} catch (error) {
-		console.log(error)
 		return res.status(500).json({error: "não foi possivel atualizar o usuario"})
 	}
 }
@@ -86,7 +85,7 @@ const getUser = async (req, res) => {
 const loginUser = async (req, res) => {
 	try {
 		const user = await userModel.loginUser(req.body)
-		if (user == "") {
+		if (!user) {
 			return res.status(404).json({message: "Usuario não encontrado"})
 		} else {
 			const token = jwt.sign({user}, process.env.SECRET)
@@ -100,7 +99,7 @@ const loginUser = async (req, res) => {
 			})
 		}
 	} catch (err) {
-		return res.status(404).json(err)
+		return res.status(404).json({error: "credenciais invalidas"})
 	}
 }
 const authCookie = async (req, res) => {
@@ -116,6 +115,7 @@ const authCookie = async (req, res) => {
 		return res.status(401).json({message: "não autenticado"})
 	}
 }
+
 const logout = async (req, res) => {
 	res.cookie("jwt", "", {maxAge: 0})
 	return res.status(200).json({message: "deslogado com sucesso"})
