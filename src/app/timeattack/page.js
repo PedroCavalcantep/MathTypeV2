@@ -16,7 +16,7 @@ export default function TimeAttack() {
 	const [acertos, setAcertos] = useState(0)
 	const [erros, setErros] = useState(0)
 	const [resultado, setResultado] = useState()
-	const [userInput, setUserIput] = useState()
+	const [userInput, setUserInput] = useState()
 
 	const gerarNumeros = (min, max) => {
 		return Math.floor(Math.random() * (max - min)) + min
@@ -46,12 +46,12 @@ export default function TimeAttack() {
 				if (userInput == resultado) {
 					setScore((prevScore) => (prevScore += 10))
 					setAcertos((prevAcertos) => (prevAcertos += 1))
-					setUserIput("")
+					setUserInput("")
 					gerarConta()
 				} else {
 					setScore((prevScore) => (prevScore -= 5))
 					setErros((prevErros) => (prevErros += 1))
-					setUserIput("")
+					setUserInput("")
 					gerarConta()
 				}
 			}
@@ -143,7 +143,7 @@ export default function TimeAttack() {
 										className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-center focus:outline-none sm:text-3xl text-white bg-transparent"
 										onKeyDown={handleKey}
 										onChange={(e) => {
-											setUserIput(e.target.value)
+											setUserInput(e.target.value)
 										}}
 									/>
 								</div>

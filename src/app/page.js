@@ -11,7 +11,7 @@ export default function Home() {
 				<MainPage></MainPage>
 			</div>
 
-			<div className="flex  justify-center py-10 px-8 ">
+			<div className="flex justify-center py-10 px-8 ">
 				<CardGame></CardGame>
 			</div>
 
