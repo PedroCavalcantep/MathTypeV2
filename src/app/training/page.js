@@ -17,8 +17,6 @@ export default function Training() {
   const [showResult, setShowResult] = useState(false);
   const [kanye, setKanye] = useState("");
 
-
-
   const gerarNumeros = (min, max) => {
     return Math.floor(Math.random() * (max - min)) + min;
   };
@@ -64,8 +62,7 @@ export default function Training() {
 
   //calcular resultado
   useEffect(() => {
-    setResultado(numeros[0] * numeros[1]
-
+    setResultado(numeros[0] * numeros[1]);
   }, [numeros]);
 
   const startGame = () => {
