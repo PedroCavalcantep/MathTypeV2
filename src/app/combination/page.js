@@ -8,7 +8,7 @@ import Resultado from "../../components/Resultado";
 export default function Combination() {
   const [numeros, setNumeros] = useState([]);
   const [isGameOn, setGame] = useState(false);
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(40);
   const [resultado, setResultado] = useState(0);
   const [userInput, setUserInput] = useState();
   const [score, setScore] = useState(0);
@@ -43,7 +43,6 @@ export default function Combination() {
     } else {
       setScore((prevScore) => prevScore - 5);
       setErros((erros) => erros + 1);
-      setTimer((timer) => timer - 2);
       setUserInput(" ");
     }
     gerarConta();
@@ -57,7 +56,7 @@ export default function Combination() {
     gerarConta();
     setAcertos(0);
     setErros(0);
-    setTimer(10);
+    setTimer(40);
     setScore(0);
     setShowResult(false);
     setGame(true);
@@ -66,9 +65,6 @@ export default function Combination() {
   useEffect(() => {
     gerarConta();
   }, [score]);
-  useEffect(() => {
-    console.log(resultado);
-  }, [resultado]);
 
   //timer
   useEffect(() => {

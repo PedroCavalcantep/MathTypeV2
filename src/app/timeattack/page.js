@@ -46,6 +46,7 @@ export default function TimeAttack() {
         if (userInput == resultado) {
           setScore((prevScore) => (prevScore += 10));
           setAcertos((prevAcertos) => (prevAcertos += 1));
+          setTimer((timer) => timer + 2);
           setUserInput("");
           gerarConta();
         } else {
