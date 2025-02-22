@@ -1,22 +1,22 @@
-const userModel = require("../models/userModels")
-const jwt = require("jsonwebtoken")
-require("dotenv").config()
+const userModel = require('../models/userModels')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 const listAll = async (req, res) => {
 	try {
 		const users = await userModel.listAll()
-		return res.status(200).json({users})
+		return res.status(200).json({ users })
 	} catch (err) {
-		return res.status(500).json({message: "Internal server error"})
+		return res.status(500).json({ message: 'Internal server error' })
 	}
 }
 
 const createUser = async (req, res) => {
 	try {
 		const user = await userModel.createUser(req.body)
-		return res.status(201).json({user})
+		return res.status(201).json({ user })
 	} catch (err) {
-		return res.status(500).json({error: "nome ou email ja utilizado"})
+		return res.status(500).json({ error: 'nome ou email ja utilizado' })
 	}
 }
 
@@ -32,18 +32,18 @@ const findUser = async (x) => {
 
 const updateUser = async (req, res) => {
 	const id = req.params.id
-	const {nome, senha, email, id_foto} = req.body
+	const { nome, senha, email, id_foto } = req.body
 
 	try {
 		const user = await findUser(id)
-		if (user == "") {
-			return res.status(404).json({message: "usuario não enctonrado"})
+		if (user == '') {
+			return res.status(404).json({ message: 'usuario não enctonrado' })
 		} else {
-			const updatedUser = await userModel.updateUser({nome, senha, email, id_foto, id})
-			return res.status(200).json({updatedUser})
+			const updatedUser = await userModel.updateUser({ nome, senha, email, id_foto, id })
+			return res.status(200).json({ updatedUser })
 		}
 	} catch (error) {
-		return res.status(500).json({error: "não foi possivel atualizar o usuario"})
+		return res.status(500).json({ error: 'não foi possivel atualizar o usuario' })
 	}
 }
 
@@ -53,11 +53,11 @@ const deleteUser = async (req, res) => {
 	try {
 		const user = await findUser(id)
 		console.log(user)
-		if (user == "") {
-			return res.status(404).json({error: "usuario não encontrado"})
+		if (user == '') {
+			return res.status(404).json({ error: 'usuario não encontrado' })
 		} else {
 			const deletedUser = await userModel.deleteUser(id)
-			return res.status(200).json({deletedUser})
+			return res.status(200).json({ deletedUser })
 		}
 	} catch (error) {
 		return res.status(404).json(error)
@@ -71,11 +71,11 @@ const getUser = async (req, res) => {
 		const user = await findUser(id)
 		console.log(user)
 
-		if (user == "") {
-			return res.status(404).json({error: "usuario não encontrado"})
+		if (user == '') {
+			return res.status(404).json({ error: 'usuario não encontrado' })
 		} else {
 			const getUser = await userModel.getUser(id)
-			return res.status(200).json({getUser})
+			return res.status(200).json({ getUser })
 		}
 	} catch (error) {
 		return res.status(404).json(error)
@@ -86,39 +86,39 @@ const loginUser = async (req, res) => {
 	try {
 		const user = await userModel.loginUser(req.body)
 		if (!user) {
-			return res.status(404).json({message: "Usuario não encontrado"})
+			return res.status(404).json({ message: 'Usuario não encontrado' })
 		} else {
-			const token = jwt.sign({user}, process.env.SECRET)
+			const token = jwt.sign({ user }, process.env.SECRET)
 
-			res.cookie("jwt", token, {
+			res.cookie('jwt', token, {
 				httpOnly: true,
-				maxAge: 15 * 24 * 60 * 60 * 1000
+				maxAge: 15 * 24 * 60 * 60 * 1000,
 			})
 			res.status(201).json({
-				message: "Login realizado com sucesso"
+				message: 'Login realizado com sucesso',
 			})
 		}
 	} catch (err) {
-		return res.status(404).json({error: "credenciais invalidas"})
+		return res.status(404).json({ error: 'credenciais invalidas' })
 	}
 }
 const authCookie = async (req, res) => {
 	try {
-		const cookie = req.cookies["jwt"]
+		const cookie = req.cookies['jwt']
 		const claims = jwt.verify(cookie, process.env.SECRET)
 		if (!claims) {
-			return res.status(401).json({message: "não autenticado"})
+			return res.status(401).json({ message: 'não autenticado' })
 		}
 		const user = await userModel.getUser(claims.user)
-		return res.status(202).json({nome: user[0].nome, id: claims.user, id_foto: user[0].id_foto})
+		return res.status(202).json({ nome: user[0].nome, id: claims.user, id_foto: user[0].id_foto })
 	} catch (error) {
-		return res.status(401).json({message: "não autenticado"})
+		return res.status(401).json({ message: 'não autenticado' })
 	}
 }
 
 const logout = async (req, res) => {
-	res.cookie("jwt", "", {maxAge: 0})
-	return res.status(200).json({message: "deslogado com sucesso"})
+	res.cookie('jwt', '', { maxAge: 0 })
+	return res.status(200).json({ message: 'deslogado com sucesso' })
 }
 
 module.exports = {
@@ -130,5 +130,5 @@ module.exports = {
 	loginUser,
 	authCookie,
 	logout,
-	updateUser
+	updateUser,
 }

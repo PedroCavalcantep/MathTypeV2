@@ -2,13 +2,34 @@
 
 import { Input } from "@material-tailwind/react"
 import { Button } from "@material-tailwind/react"
-import React from "react"
+import React, { useState } from "react"
 import Image from "next/image"
 import Close from "../assets/close_icon.svg"
 import LogoSmall from "../assets/logo_small.svg"
 import GoogleLogo from "../assets/GooGoo.svg"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/app/authcontext" // Import useAuth
 
 export default function Login({ isOpen, closeForm, toggleRegister }) {
+	const [email, setEmail] = useState("")
+	const [senha, setSenha] = useState("")
+	const [error, setError] = useState("")
+	const router = useRouter()
+	const { login } = useAuth() // Get the login function from AuthContext
+
+	const handleSubmit = async (e) => {
+		setError("")
+
+		try {
+			await login({ email, senha })
+
+			closeForm()
+			router.push("/")
+		} catch (err) {
+			setError("Login failed. Please check your credentials.")
+		}
+	}
+
 	if (isOpen) {
 		return (
 			<div className=" fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center text-white z-50">
@@ -27,22 +48,39 @@ export default function Login({ isOpen, closeForm, toggleRegister }) {
 
 						<div className="flex flex-col gap-2">
 							<div className=" flex flex-col gap-8 w-72">
-								<Input label="Email Address" color="white" />
-
-								<Input label="Password" color="white" type="password" />
+								<Input
+									label="Email Address"
+									color="white"
+									onChange={(e) => {
+										setEmail(e.target.value)
+									}}
+								/>
+								<Input
+									label="Password"
+									color="white"
+									type="password"
+									onChange={(e) => {
+										setSenha(e.target.value)
+									}}
+								/>
 							</div>
 
 							<button className="self-end hover:text-blue-100 text-blue-600 transition duration-300 ease-in-out">
 								<span className="self-end text-xs">Forgot password?</span>
 							</button>
 						</div>
-						<button className="bg-transparent border-2 border-blue-400 hover:bg-blue-400 text-blue-400 font-bold hover:text-white w-[280px] py-2 px-12  transition duration-300 ease-in-out rounded">
+						<button
+							className="bg-transparent border-2 border-blue-400 hover:bg-blue-400 text-blue-400 font-bold hover:text-white w-[280px] py-2 px-12  transition duration-300 ease-in-out rounded"
+							onClick={handleSubmit}
+						>
 							<span>Enter</span>
 						</button>
-
+						<div>
+							<p className="text-sm text-opacity-75 text-red-500">{error}</p>
+						</div>
 						<div className="my-6 flex items-center justify-center">
 							<div className="border-t w-28 border-gray-300 flex-grow mr-3"></div>
-							<span className="text-xs text-gray-200">OU</span>
+							<span className="text-xs text-gray-200">OR</span>
 							<div className="border-t w-28 border-gray-300 flex-grow ml-3"></div>
 						</div>
 
@@ -61,6 +99,7 @@ export default function Login({ isOpen, closeForm, toggleRegister }) {
 							/>
 							Continue with Google
 						</Button>
+
 						<span className=" text-xs">
 							Not have an account yet?{" "}
 							<button

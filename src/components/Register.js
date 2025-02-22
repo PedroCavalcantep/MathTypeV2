@@ -1,10 +1,11 @@
-"use client"
+'use client'
 
-import { Input } from "@material-tailwind/react"
-import React from "react"
-import Image from "next/image"
-import Close from "../assets/close_icon.svg"
-import LogoSmall from "../assets/logo_small.svg"
+import { Input } from '@material-tailwind/react'
+import React from 'react'
+import Image from 'next/image'
+import Close from '../assets/close_icon.svg'
+import LogoSmall from '../assets/logo_small.svg'
+import { Button } from '@material-tailwind/react'
 
 export default function Register({ isOpen, closeForm, toggleLogin }) {
 	if (isOpen) {
@@ -41,9 +42,30 @@ export default function Register({ isOpen, closeForm, toggleLogin }) {
 						<button className="bg-transparent border-2 border-blue-400 hover:bg-blue-400 text-blue-400 font-bold hover:text-white w-[295px] py-2 px-12  transition duration-300 ease-in-out rounded">
 							<span>Enter</span>
 						</button>
+						<div className="my-6 flex items-center justify-center">
+							<div className="border-t w-28 border-gray-300 flex-grow mr-3"></div>
+							<span className="text-xs text-gray-200">OR</span>
+							<div className="border-t w-28 border-gray-300 flex-grow ml-3"></div>
+						</div>
+
+						<Button
+							size="lg"
+							variant="outlined"
+							color="blue-gray"
+							className="flex items-center gap-3 text-white hover:bg-gray-700 "
+						>
+							<Image
+								src="https://docs.material-tailwind.com/icons/google.svg"
+								alt="metamask"
+								className="h-6 w-6"
+								width={0}
+								height={0}
+							/>
+							Register with Google
+						</Button>
 
 						<span className=" text-xs">
-							Do you already have an account?{" "}
+							Do you already have an account?{' '}
 							<button
 								className=" hover:text-blue-100 transition duration-300 ease-in-out text-blue-600 "
 								onClick={() => {
