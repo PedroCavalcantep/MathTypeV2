@@ -1,4 +1,6 @@
 "use client";
+import Link from 'next/link'
+import { Button } from "@material-tailwind/react";
 import { use, useEffect, useState } from "react";
 import StartCombination from "../../components/StartCombination";
 import Image from "next/image";
@@ -34,6 +36,7 @@ export default function Combination() {
       checarResultado();
     }
   };
+
   const checarResultado = () => {
     if (userInput == resultado) {
       setScore((prevScore) => prevScore + 10);
@@ -112,6 +115,7 @@ export default function Combination() {
                       width={60}
                       className="animate-fadeInOut"
                     />
+
                     <p className="animate-fadeInOut">{timer}s</p>
                   </div>
                   <div className="flex flex-row justify-start items-center px-7 gap-7 text-2xl rounded-full ">
@@ -145,8 +149,22 @@ export default function Combination() {
                       }}
                     />
                   </div>
+                </div>  
+                <div className="flex w-max gap-4">
+                 
+                  <Link href="/combination"> 
+                        <Button
+                            variant="filled"
+                            size="lg"
+                            className=" w-44 h-14 bg-[#444c58] "
+                          >
+                            Stop
+                          </Button>
+                  </Link>
                 </div>
+   
               </div>
+     
             </div>
           ) : (
             <div>

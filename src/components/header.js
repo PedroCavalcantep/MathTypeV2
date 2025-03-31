@@ -24,6 +24,7 @@ export default function Navbar() {
 	const Router = useRouter()
 	const [loginState, setLogin] = useState(false)
 	const [registerState, setRegister] = useState(false)
+	const [isLogged, setLogged] = useState(false)
 	const { user, logout } = useAuth()
 
 	const toggleLogin = () => {
@@ -32,6 +33,14 @@ export default function Navbar() {
 	const toggleRegister = () => {
 		setRegister((registerState) => !registerState)
 	}
+
+	useEffect(() => {
+		if (!user || !user.nome) {
+			setLogged(false)
+		} else {
+			setLogged(true)
+		}
+	}, [useAuth()])
 
 	return (
 		<header className="w-full bg-corheader text-white py-1">
@@ -46,7 +55,7 @@ export default function Navbar() {
 					</div>
 
 					<div className="flex flex-row gap-5">
-						{user ? (
+						{isLogged ? (
 							<div className="flex items-center gap-4">
 								<Popover
 									placement="bottom"
@@ -84,6 +93,7 @@ export default function Navbar() {
 													<ListItem
 														className="text-red-800"
 														onClick={() => {
+															setLogged(false)
 															logout()
 														}}
 													>
@@ -107,9 +117,6 @@ export default function Navbar() {
 									</Badge>
 									<div>
 										<Typography variant="h6">{user.nome}</Typography>
-										<Typography variant="small" className="font-normal text-gray-600">
-											ID #77546
-										</Typography>
 									</div>
 								</Popover>
 							</div>

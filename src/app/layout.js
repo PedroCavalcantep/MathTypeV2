@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
 				<AuthProvider>
 					<Navbar />
 					{children}
+					<Analytics />
 				</AuthProvider>
 			</body>
 		</html>

@@ -1,21 +1,17 @@
 const imageModel = require("../models/imageModels")
 
 const uploadImage = async (req, res) => {
-	const file = req.file
-
-	if (!file) {
-		return res.status(400).json({ message: "Nenhuma foto enviada" })
-	}
-
-	const image = file.buffer
-
-	try {
-		const uploadedImage = await imageModel.uploadImage(image)
-
-		return res.status(201).json({ message: "Foto enviada com sucesso", id: uploadedImage.id })
-	} catch (error) {
-		return res.status(500).json({ message: "Não consegui enviar" })
-	}
+	// res.send("deu bom")
+		const file = await req.body
+		console.log(file)
+		if (!file) {
+			return res.status(400).json({ message: "Nenhuma foto enviada" })
+		}
+		try {
+			res.status(201).json({ message: "Foto enviada com sucesso" })
+		} catch (error) {
+			return res.status(500).json({ message: "Não consegui enviar" })
+		}
 }
 
 const getImage = async (req, res) => {
@@ -39,9 +35,9 @@ const deleteImage = async (req, res) => {
 	const id = req.params.id
 
 	try {
-		if(!id){
-			return res.status(500).json({message: "imagem não encontrada"})
-		}else{
+		if (!id) {
+			return res.status(500).json({ message: "imagem não encontrada" })
+		} else {
 			const deletedImage = await imageModel.deleteImage(id)
 			return res.status(200).json({ deletedImage })
 		}
@@ -69,11 +65,9 @@ const updateImage = async (req, res) => {
 	}
 }
 
-
-
 module.exports = {
 	uploadImage,
 	getImage,
 	deleteImage,
-	updateImage
+	updateImage,
 }

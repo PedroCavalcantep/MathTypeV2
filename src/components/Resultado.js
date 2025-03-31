@@ -7,12 +7,11 @@ const Button = dynamic(() => import("@material-tailwind/react").then((mod) => mo
 	ssr: false
 })
 
-// Import assets as usual
 import DumbCat from "../assets/CatDumb.png"
 
 export default function Example({acertos, erros, reiniciar}) {
 	const userCorrectCount = acertos
-	const userErrorCount = erros
+	const userErrorCount = erros 
 
 	const chartData = [userCorrectCount, userErrorCount]
 
@@ -20,8 +19,8 @@ export default function Example({acertos, erros, reiniciar}) {
 		chart: {
 			toolbar: {show: false}
 		},
-		title: {show: false},
-		dataLabels: {enabled: false},
+		title: {show: true},
+		dataLabels: {enabled: true},
 		colors: ["#38b000", "#d00000"],
 		legend: {show: false},
 		tooltip: {
@@ -72,7 +71,7 @@ export default function Example({acertos, erros, reiniciar}) {
 						<Button
 							variant="filled"
 							size="lg"
-							className=" w-44 h-14 bg-[#444c58] "
+							className=" w-44 h-14 bg-[#444c58]  hover:bg-[#152A31]"
 							onClick={() => {
 								reiniciar()
 							}}
@@ -80,7 +79,7 @@ export default function Example({acertos, erros, reiniciar}) {
 							Recomeçar
 						</Button>
 						<Link href={"/"}>
-							<Button variant="filled" size="lg" className=" w-44 h-14 bg-[#444c58] ">
+							<Button variant="filled" size="lg" className=" w-44 h-14 bg-[#444c58] hover:bg-[#152A31]">
 								Retornar
 							</Button>
 						</Link>

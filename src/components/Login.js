@@ -2,29 +2,33 @@
 
 import { Input } from "@material-tailwind/react"
 import { Button } from "@material-tailwind/react"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Close from "../assets/close_icon.svg"
 import LogoSmall from "../assets/logo_small.svg"
 import GoogleLogo from "../assets/GooGoo.svg"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/app/authcontext" // Import useAuth
+import { useAuth } from "@/app/authcontext"
 
 export default function Login({ isOpen, closeForm, toggleRegister }) {
 	const [email, setEmail] = useState("")
 	const [senha, setSenha] = useState("")
 	const [error, setError] = useState("")
 	const router = useRouter()
-	const { login } = useAuth() // Get the login function from AuthContext
+	const { login } = useAuth()
+
+	const refreshPage = () => {
+		window.location.reload(false)
+	}
 
 	const handleSubmit = async (e) => {
+		e.preventDefault()
 		setError("")
 
 		try {
 			await login({ email, senha })
-
 			closeForm()
-			router.push("/")
+			refreshPage()
 		} catch (err) {
 			setError("Login failed. Please check your credentials.")
 		}

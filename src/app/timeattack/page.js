@@ -9,7 +9,7 @@ export default function TimeAttack() {
 	const [isGameOn, setGame] = useState(false)
 	const [showResult, setShowResult] = useState(false)
 	const [numeros, setNumeros] = useState([])
-	const [timer, setTimer] = useState(30)
+	const [timer, setTimer] = useState(3)
 	const [score, setScore] = useState(0)
 	const [acertos, setAcertos] = useState(0)
 	const [erros, setErros] = useState(0)
@@ -51,6 +51,7 @@ export default function TimeAttack() {
 					setScore((prevScore) => (prevScore -= 5))
 					setErros((prevErros) => (prevErros += 1))
 					setUserInput('')
+                    setTimer((timer) => timer - 1)
 					gerarConta()
 				}
 			}
@@ -60,7 +61,6 @@ export default function TimeAttack() {
 
 	useEffect(() => {
 		gerarConta()
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 	// Effect do timer
 	useEffect(() => {
@@ -81,7 +81,6 @@ export default function TimeAttack() {
 
 			return () => clearInterval(interval)
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isGameOn])
 	useEffect(() => {
 		setResultado(numeros[0] * numeros[1])
